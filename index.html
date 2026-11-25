@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Zweite Sicherung für DSGVO: keine Verbindung zu irgendeinem Server, nur eigene Dateien. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Punkti · Widgets in einer Designsprache</title>
+<meta name="description" content="Punkti zeigt Uhr, Datum, Akku und Kalender als Ring aus Punkten, in Glas mit LED-Ziffern. Für iPhone, Mac und CarPlay. In Entwicklung.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="fonts/PlusJakartaSans-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+<noscript><link rel="stylesheet" href="noscript.css"></noscript>
+</head>
+<body>
+
+<!-- Hintergrund: Shaders (lokal gebündelt, ohne Telemetrie). Fallback: CSS-Verlauf unten. -->
+<div class="bg" aria-hidden="true"><canvas id="bg"></canvas></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="nav-wrap">
+  <nav class="nav" aria-label="Hauptnavigation">
+    <a class="brand" href="./"><img src="punkti-icon-224.png" alt="" width="26" height="26"><span>Punkti</span></a>
+    <span class="nav-links">
+      <a href="#widgets">Widgets</a>
+      <a href="#app">App</a>
+      <a href="#grenzen">Grenzen</a>
+      <a href="#datenschutz">Datenschutz</a>
+    </span>
+  </nav>
+</header>
+
+<main>
+
+<!-- HERO · Editorial Split -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow reveal">Widgets · iPhone · Mac · CarPlay</p>
+      <h1 class="reveal d1">Eine Designsprache für alle deine Widgets.</h1>
+      <p class="lead reveal d2">Punkti zeigt Uhr, Datum, Akku und Kalender als Ring aus Punkten, in Glas und mit LED-Ziffern. Ruhig, gut lesbar, überall gleich.</p>
+      <p class="status reveal d3"><span class="dot-live" aria-hidden="true"></span>In Entwicklung, noch nicht im App Store</p>
+    </div>
+
+    <div class="hero-visual reveal d2">
+      <div class="shell">
+        <div class="core clock-core">
+          <svg id="clock-ring" viewBox="0 0 200 200" role="img" aria-label="Uhr als Punktering mit wandernder Sekunde"></svg>
+          <div class="clock-time" id="clock-time" aria-hidden="true">--:--</div>
+          <div class="clock-sub" id="clock-sub" aria-hidden="true"></div>
+        </div>
+      </div>
+      <p class="caption">So läuft die Uhr, live in deinem Browser.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WIDGETS · Asymmetrical Bento -->
+<section id="widgets" class="section">
+  <div class="wrap">
+    <p class="eyebrow reveal">Widgets</p>
+    <h2 class="reveal d1">Vier Ringe, eine Sprache.</h2>
+    <p class="lead reveal d2">Jedes Widget ist eine Glasscheibe mit einem Ring aus Punkten. Was zählt, leuchtet; der Rest tritt zurück.</p>
+
+    <div class="bento">
+      <article class="shell b-uhr reveal">
+        <div class="core">
+          <svg class="ring" data-ring="uhr" viewBox="0 0 200 200" aria-hidden="true"></svg>
+          <div class="w-text"><h3>Uhr</h3><p>Punktering mit wandernder Sekunde, LED-Ziffern in sechs Schriften, Farbe wählbar.</p></div>
+        </div>
+      </article>
+
+      <article class="shell b-datum reveal d1">
+        <div class="core">
+          <svg class="ring" data-ring="datum" viewBox="0 0 200 200" aria-hidden="true"></svg>
+          <div class="w-text"><h3>Datum</h3><p>Tageszahl in LED-Ziffern. Ein Punkt je Tag des Monats, heute leuchtet.</p></div>
+        </div>
+      </article>
+
+      <article class="shell b-akku reveal d2">
+        <div class="core">
+          <svg class="ring" data-ring="akku" viewBox="0 0 200 200" aria-hidden="true"></svg>
+          <div class="w-text"><h3>Akku</h3><p>Der Ring füllt sich mit dem Ladestand deines Geräts. <span class="mut">Beispielwert.</span></p></div>
+        </div>
+      </article>
+
+      <article class="shell b-kal reveal d3">
+        <div class="core">
+          <svg class="ring" data-ring="kalender" viewBox="0 0 200 200" aria-hidden="true"></svg>
+          <div class="w-text"><h3>Kalender</h3><p>Nächster Termin mit Startzeit und Titel, dazu ein Ring über 24 Stunden mit den Terminen von heute. <span class="mut">Beispieltermine.</span></p></div>
+        </div>
+      </article>
+    </div>
+
+    <p class="more reveal">Dazu kommen Termine, Monat und ein Wetter-Widget mit Fünf-Tage-Vorschau.</p>
+  </div>
+</section>
+
+<!-- APP -->
+<section id="app" class="section">
+  <div class="wrap split">
+    <div>
+      <p class="eyebrow reveal">Die App</p>
+      <h2 class="reveal d1">Die Uhr im Vollbild, mit flüssigen Sekunden.</h2>
+    </div>
+    <div>
+      <p class="lead reveal d2">Die App zeigt die Uhr groß und ruhig, auf dem Tisch oder im Auto. Die Sekunde wandert gleichmäßig um den Ring.</p>
+      <ul class="tick reveal d3">
+        <li>Tippen wechselt die Farbe.</li>
+        <li>Langes Drücken wechselt die Schrift.</li>
+        <li>Eine Designsprache auf iPhone, Mac und im CarPlay-Display.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- GRENZEN -->
+<section id="grenzen" class="section">
+  <div class="wrap">
+    <p class="eyebrow reveal">Ehrlich gesagt</p>
+    <h2 class="reveal d1">Was Widgets nicht können.</h2>
+    <div class="limits">
+      <div class="shell reveal"><div class="core"><h3>Sekunden im Widget</h3><p>Das System aktualisiert ein Widget nur etwa alle zwei Sekunden. Flüssig laufen die Sekunden deshalb nur in der App.</p></div></div>
+      <div class="shell reveal d1"><div class="core"><h3>Akku nur vom eigenen Gerät</h3><p>Ein Widget kann den Akku eines anderen Geräts nicht lesen. Jedes Widget zeigt sein eigenes Gerät.</p></div></div>
+      <div class="shell reveal d2"><div class="core"><h3>Kalenderzugriff je Gerät</h3><p>Den Zugriff auf deinen Kalender erteilst du auf jedem Gerät einzeln.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- DATENSCHUTZ -->
+<section id="datenschutz" class="section">
+  <div class="wrap split">
+    <div>
+      <p class="eyebrow reveal">Datenschutz</p>
+      <h2 class="reveal d1">Diese Seite lädt nichts von fremden Servern.</h2>
+    </div>
+    <div>
+      <p class="lead reveal d2">Keine Cookies, kein Tracking, keine Schriften oder Skripte von außen. Der Animationshintergrund kommt von dieser Seite selbst, seine Telemetrie ist abgeschaltet.</p>
+      <p class="reveal d3"><a class="pill" href="datenschutz.html"><span>Datenschutzerklärung</span><i class="pill-ico" aria-hidden="true">↗</i></a></p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span class="brand"><img src="punkti-icon-224.png" alt="" width="22" height="22"><span>Punkti</span></span>
+    <span class="foot-links"><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="mailto:tippi@mwlr.dev">tippi@mwlr.dev</a></span>
+  </div>
+</footer>
+
+<script src="site.js" defer></script>
+<script type="module" src="shader-bg.js"></script>
+</body>
+</html>

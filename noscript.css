@@ -1,0 +1,2 @@
+/* Nur ohne JavaScript geladen (über noscript in index.html): Inhalte sichtbar machen. */
+.reveal { opacity: 1; transform: none; filter: none; }
